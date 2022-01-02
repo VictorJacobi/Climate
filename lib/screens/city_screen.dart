@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
+import 'package:clima/utilities/Re_use_form.dart';
+
+String inputVal;
 
 class CityScreen extends StatefulWidget {
   @override
@@ -7,6 +10,7 @@ class CityScreen extends StatefulWidget {
 }
 
 class _CityScreenState extends State<CityScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +27,10 @@ class _CityScreenState extends State<CityScreen> {
             children: <Widget>[
               Align(
                 alignment: Alignment.topLeft,
-                child: FlatButton(
-                  onPressed: () {},
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Icon(
                     Icons.arrow_back_ios,
                     size: 50.0,
@@ -33,10 +39,22 @@ class _CityScreenState extends State<CityScreen> {
               ),
               Container(
                 padding: EdgeInsets.all(20.0),
-                child: null,
+                child: Column(
+                  children: [
+                    MyCreatedForm(myIcon: Icon(
+                      Icons.location_city,
+                      color: Colors.white,
+                    ),initializedText: 'Enter City name',
+                    onChanged: (value){
+                      inputVal = (value);
+                    },),
+                  ],
+                ),
               ),
-              FlatButton(
-                onPressed: () {},
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context,inputVal);
+                },
                 child: Text(
                   'Get Weather',
                   style: kButtonTextStyle,
@@ -49,3 +67,4 @@ class _CityScreenState extends State<CityScreen> {
     );
   }
 }
+
